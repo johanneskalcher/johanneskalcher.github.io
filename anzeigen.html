@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ihre Daten</title>
+    <link rel="stylesheet" href="formular.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+</head>
+
+<header>
+ <h1><strong>IT-Service-Krems</strong></h1>
+</header>
+
+<body>
+    
+
+    <div class="formular-box">
+        <div id="ausgabe">
+        </div>
+    </div>
+
+    <script>
+        const dataRaw = localStorage.getItem('bewerbung');
+        const ausgabe = document.getElementById('ausgabe');
+
+        if (dataRaw) {
+            const data = JSON.parse(dataRaw);
+            ausgabe.innerHTML = `
+                <div class="infos" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                    <p class="überschrift" style="font-size: 50px; text-decoration:underline; font-weight:bold; ">
+                    Ihre gespeicherten Daten</p>
+                    
+                    <p><strong>Name:</strong> ${data.vorname} ${data.nachname}</p>
+                    <p><strong>Position:</strong> ${data.position}</p>
+                    <p><strong>Erfahrung:</strong> ${data.erfahrung} Jahre</p>
+                    <p><strong>Email:</strong> ${data.email}</p>
+                    <p><strong>Telefon:</strong> ${data.telefon}</p>
+                    <br>
+                    <a href="index.html" id="submitbutton" style="text-decoration: none; font-family: 'Orbitron', sans-serif; display: flex; justify-content: center; align-items: center ;">Ändern</a>
+                </div>
+            `;
+        } else {
+            ausgabe.innerHTML = "<p>Keine Daten gefunden</p><br><a href='formular.html' id='submitbutton' style='text-decoration: none; font-family: 'Orbitron', sans-serif; display: flex; justify-content: center; align-items: center;'></a>";
+        }
+    </script>
+</body>
+
+</html>
